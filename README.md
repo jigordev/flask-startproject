@@ -1,6 +1,6 @@
-# Flask-Init
+# Flask-StartProject
 
-Flask-Init is a simple and efficient Python script that automates the initialization of a Flask project. It sets up a project directory, creates a virtual environment, installs dependencies, and generates essential files such as `requirements.txt` and `app.py`.
+Flask-StartProject is a simple and efficient Python script that automates the initialization of a Flask project. It sets up a project directory, creates a virtual environment, installs dependencies, and generates essential files such as `requirements.txt` and `app.py`.
 
 ## Features
 - Creates a new Flask project structure
@@ -18,7 +18,7 @@ No installation is required. Just download the script and run it using Python 3.
 Run the script with the following options:
 
 ```sh
-flask-init <project_name> [options]
+flask-startproject <project_name> [options]
 ```
 
 ### Options
@@ -31,12 +31,12 @@ flask-init <project_name> [options]
 ### Example
 #### Creating a Flask project with authentication and database support:
 ```sh
-flask-init my_project -d auth,db --git-init --requirements
+flask-startproject my_project -d auth,db --git-init --requirements
 ```
 
 #### Creating a Flask project with all dependencies:
 ```sh
-flask-init my_project --all-deps
+flask-startproject my_project --all-deps
 ```
 
 ## Default Dependencies
