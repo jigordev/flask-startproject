@@ -8,6 +8,7 @@ import platform
 
 dependencies = {
     "auth": ["Flask-Security-Too"],
+    "cors": ["Flask-CORS"],
     "db": ["Flask-SQLAlchemy"],
     "migrate": ["Flask-Migrate"],
     "cache": ["Flask-Caching"],
