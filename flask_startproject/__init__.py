@@ -5,17 +5,9 @@ import json
 import argparse
 import subprocess
 import platform
+from flask_startproject.scaffold import create_project
 
-dependencies = {
-    "auth": ["Flask-Security-Too"],
-    "cors": ["Flask-CORS"],
-    "db": ["Flask-SQLAlchemy"],
-    "migrate": ["Flask-Migrate"],
-    "cache": ["Flask-Caching"],
-    "mail": ["Flask-Mailman"],
-    "validation": ["Marshmallow"],
-    "jobs": ["Celery"]
-}
+CONFIG_DIR = os.path.join(os.path.dirname(__file__), "config")
 
 def read_config_file(filename):
     if not os.path.exists(filename):
@@ -33,6 +25,7 @@ def main():
         description="Flask project initializer"
     )
     parser.add_argument("name", help="Project name")
+    parser.add_argument("-t", "--template", action="store", choices=["api", "web"], help="Specifies project template")
     parser.add_argument("-d", "--deps", action="store", help="Specifies the dependencies. Ex: (auth,db...)")
     parser.add_argument("-f", "--from-file", help="Load dependencies from a config file (JSON)")
     parser.add_argument("--all-deps", action="store_true", help="Install all dependencies")
@@ -41,7 +34,7 @@ def main():
 
     args = parser.parse_args()
 
-    config = read_config_file(args.from_file) if args.from_file else dependencies
+    config = read_config_file(args.from_file if args.from_file else f"{CONFIG_DIR}/config.json")
 
     project_dir = os.path.abspath(args.name)
     venv_path = os.path.join(project_dir, "venv")
@@ -78,25 +71,6 @@ def main():
     if args.git_init:
         print("Initializing Git repository...")
         subprocess.run(["git", "init"], cwd=project_dir, check=True)
-
-    app_template = """
-    from flask import Flask
     
-    app = Flask(__name__)
-
-    @app.route("/")
-    def home():
-        return "Hello, Flask!"
-
-    if __name__ == "__main__":
-        app.run(debug=True)
-    """
-
-    with open(os.path.join(project_dir, "app.py"), "w") as f:
-        f.write(app_template)
-
-    print("Created app.py with a basic Flask setup.")
-    print("Flask project setup completed!")
-
-if __name__ == "__main__":
-    main()
+    create_project(args.name, args.template)
+    print(f"Flask project '{args.name}' created with template '{args.template}'.")

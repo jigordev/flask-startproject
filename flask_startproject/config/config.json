@@ -1,0 +1,12 @@
+{
+    "auth": ["Flask-Security-Too"],
+    "cors": ["Flask-CORS"],
+    "db": ["Flask-SQLAlchemy"],
+    "migrate": ["Flask-Migrate"],
+    "forms": ["Flask-WTF"],
+    "cache": ["Flask-Caching"],
+    "mail": ["Flask-Mailman"],
+    "validation": ["Marshmallow"],
+    "jobs": ["Celery"],
+    "test": ["pytest"]
+}
