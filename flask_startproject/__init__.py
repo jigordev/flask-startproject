@@ -25,7 +25,7 @@ def main():
         description="Flask project initializer"
     )
     parser.add_argument("name", help="Project name")
-    parser.add_argument("-t", "--template", action="store", choices=["api", "web"], help="Specifies project template")
+    parser.add_argument("-t", "--template", action="store", choices=["api", "web"], default="web", help="Specifies project template")
     parser.add_argument("-d", "--deps", action="store", help="Specifies the dependencies. Ex: (auth,db...)")
     parser.add_argument("-f", "--from-file", help="Load dependencies from a config file (JSON)")
     parser.add_argument("--all-deps", action="store_true", help="Install all dependencies")

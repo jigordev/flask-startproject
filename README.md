@@ -1,6 +1,6 @@
 # Flask-StartProject
 
-Flask-StartProject is a simple and efficient Python script that automates the initialization of a Flask project. It sets up a project directory, creates a virtual environment, installs dependencies, and generates essential files such as `requirements.txt` and `app.py`.
+Flask-StartProject is a simple and efficient Python script that automates the initialization of a Flask project. It sets up a project directory, creates a virtual environment, installs dependencies, and generates essential files such as `requirements.txt` and `app` folder.
 
 ## Features
 - Creates a new Flask project structure
@@ -9,7 +9,7 @@ Flask-StartProject is a simple and efficient Python script that automates the in
 - Supports loading dependencies from a configuration file (JSON)
 - Provides options for Git initialization
 - Generates a `requirements.txt` file
-- Creates a basic `app.py` file with a default Flask setup
+- Creates template based project structure
 
 ## Installation
 No installation is required. Just download the script and run it using Python 3.
@@ -22,6 +22,7 @@ flask-startproject <project_name> [options]
 ```
 
 ### Options
+- `-t, --template` - Specifies scaffold template (e.g., `api or web`)
 - `-d, --deps` - Specifies dependencies to install (e.g., `auth,db,migrate`)
 - `-f, --from-file` - Loads dependencies from a JSON file
 - `--all-deps` - Installs all available dependencies
@@ -31,7 +32,7 @@ flask-startproject <project_name> [options]
 ### Example
 #### Creating a Flask project with authentication and database support:
 ```sh
-flask-startproject my_project -d auth,db --git-init --requirements
+flask-startproject my_project -t api -d auth,db --git-init --requirements
 ```
 
 #### Creating a Flask project with all dependencies:
@@ -47,26 +48,17 @@ The script supports predefined dependencies categorized as follows:
 |------------|------------------------------------------------|
 | auth       | Flask-Security-Too                            |
 | db         | Flask-SQLAlchemy                              |
+| forms      | Flask-WTF                                     |
 | migrate    | Flask-Migrate                                 |
 | cache      | Flask-Caching                                 |
 | mail       | Flask-Mailman                                 |
 | validation | Marshmallow                                   |
 | jobs       | Celery                                        |
+| test       | pytest                                        |
 
-## Generated `app.py`
-When a new project is created, a simple `app.py` file is included:
-```python
-from flask import Flask
+## Generated scaffold
 
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return "Hello, Flask!"
-
-if __name__ == "__main__":
-    app.run(debug=True)
-```
+When you select a template 'api' or 'web', your project is created based on the chosen model.
 
 ## License
 This project is licensed under the MIT License.
